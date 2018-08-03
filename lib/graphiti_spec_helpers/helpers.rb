@@ -1,4 +1,4 @@
-module JsonapiSpecHelpers
+module GraphitiSpecHelpers
   module Helpers
     extend ActiveSupport::Concern
 
@@ -64,7 +64,7 @@ module JsonapiSpecHelpers
     end
 
     def datetime(value)
-      JsonapiCompliable::Types[:datetime][:read][value]
+      Graphiti::Types[:datetime][:read][value]
     end
 
     # @api private

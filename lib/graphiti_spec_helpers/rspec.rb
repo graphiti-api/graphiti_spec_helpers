@@ -1,4 +1,4 @@
-require 'jsonapi_spec_helpers'
+require 'graphiti_spec_helpers'
 
 ::RSpec.shared_context 'resource testing', type: :resource do |parameter|
   let(:resource)     { described_class }
@@ -6,7 +6,7 @@ require 'jsonapi_spec_helpers'
 
   # If you need to set context:
   #
-  # JsonapiCompliable.with_context my_context, {} do
+  # Graphiti.with_context my_context, {} do
   #   render
   # end
   def render(runtime_options = {})
@@ -17,7 +17,7 @@ require 'jsonapi_spec_helpers'
 
   def proxy
     @proxy ||= begin
-      ctx = ::JsonapiSpecHelpers::TestRunner.new(resource, params)
+      ctx = ::GraphitiSpecHelpers::TestRunner.new(resource, params)
       defined?(base_scope) ? ctx.proxy(base_scope) : ctx.proxy
     end
   end
@@ -31,10 +31,10 @@ require 'jsonapi_spec_helpers'
   end
 end
 
-module JsonapiSpecHelpers
+module GraphitiSpecHelpers
   module RSpec
     def self.included(klass)
-      klass.send(:include, JsonapiSpecHelpers)
+      klass.send(:include, GraphitiSpecHelpers)
 
       ::RSpec.configure do |rspec|
         rspec.include_context "resource testing", type: :resource
@@ -51,7 +51,7 @@ Incompatibilities:
 
           MSG
 
-          errors = JsonapiCompliable::Schema.generate!(resources)
+          errors = Graphiti::Schema.generate!(resources)
           errors.each do |e|
             message << "#{e}\n"
           end

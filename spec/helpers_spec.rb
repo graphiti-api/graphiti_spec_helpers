@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe JsonapiSpecHelpers do
-  include JsonapiSpecHelpers
+describe GraphitiSpecHelpers do
+  include GraphitiSpecHelpers
   attr_accessor :response
 
   let(:instance) { klass.new }
@@ -65,7 +65,7 @@ describe JsonapiSpecHelpers do
       it 'raises helpful error' do
         expect {
           jsonapi_data[0].link(:positions, :related)
-        }.to raise_error(JsonapiSpecHelpers::Errors::LinksNotFound, "Relationship with name 'positions' has no links!")
+        }.to raise_error(GraphitiSpecHelpers::Errors::LinksNotFound, "Relationship with name 'positions' has no links!")
       end
     end
   end
@@ -97,7 +97,7 @@ describe JsonapiSpecHelpers do
       it 'raises helpful error' do
         expect {
           jsonapi_data[0].sideloads(:foo)
-        }.to raise_error(JsonapiSpecHelpers::Errors::SideloadNotFound, "Relationship with name 'foo' not found!")
+        }.to raise_error(GraphitiSpecHelpers::Errors::SideloadNotFound, "Relationship with name 'foo' not found!")
       end
     end
 
@@ -120,7 +120,7 @@ describe JsonapiSpecHelpers do
 
       it 'returns a node' do
         d = jsonapi_data
-        expect(d.is_a?(JsonapiSpecHelpers::Node)).to eq(true)
+        expect(d.is_a?(GraphitiSpecHelpers::Node)).to eq(true)
         expect(d.id).to eq(100)
         expect(d.jsonapi_type).to eq('employees')
         expect(d.first_name).to eq('John')
@@ -132,7 +132,7 @@ describe JsonapiSpecHelpers do
         d = jsonapi_data
         expect(d.is_a?(Array)).to eq(true)
         expect(d.length).to eq(1)
-        expect(d[0].is_a?(JsonapiSpecHelpers::Node)).to eq(true)
+        expect(d[0].is_a?(GraphitiSpecHelpers::Node)).to eq(true)
         expect(d[0].id).to eq(100)
         expect(d[0].jsonapi_type).to eq('employees')
         expect(d[0].first_name).to eq('John')
@@ -147,7 +147,7 @@ describe JsonapiSpecHelpers do
       it 'raises helpful error' do
         expect {
           jsonapi_data
-        }.to raise_error(JsonapiSpecHelpers::Errors::NoData)
+        }.to raise_error(GraphitiSpecHelpers::Errors::NoData)
       end
     end
   end
@@ -203,6 +203,7 @@ describe JsonapiSpecHelpers do
     end
 
     it 'can render simple hash' do
+      errors = jsonapi_errors
       expect(errors.to_h).to eq({
         name: "can't be blank"
       })

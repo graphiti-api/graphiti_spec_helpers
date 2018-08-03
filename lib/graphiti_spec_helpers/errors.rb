@@ -1,4 +1,4 @@
-module JsonapiSpecHelpers
+module GraphitiSpecHelpers
   module Errors
     class Base < StandardError; end
 

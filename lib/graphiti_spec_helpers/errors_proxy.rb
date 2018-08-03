@@ -1,4 +1,4 @@
-module JsonapiSpecHelpers
+module GraphitiSpecHelpers
   class ErrorsProxy
     class Error
       attr_reader :json

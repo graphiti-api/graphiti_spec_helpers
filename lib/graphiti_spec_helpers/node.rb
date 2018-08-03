@@ -1,4 +1,4 @@
-module JsonapiSpecHelpers
+module GraphitiSpecHelpers
   class Node
     attr_reader :attributes, :relationships
 
