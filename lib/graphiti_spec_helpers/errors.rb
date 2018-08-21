@@ -12,6 +12,16 @@ module GraphitiSpecHelpers
       end
     end
 
+    class NoAttribute < Base
+      def initialize(name)
+        @name = name
+      end
+
+      def message
+        "No attribute '#{@name}' in JSON response node!"
+      end
+    end
+
     class SideloadNotFound < Base
       def initialize(name)
         @name = name
