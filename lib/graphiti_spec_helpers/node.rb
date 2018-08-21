@@ -40,7 +40,7 @@ module GraphitiSpecHelpers
       if @attributes.has_key?(id)
         @attributes[id]
       else
-        super
+        raise Errors::NoAttribute.new(id)
       end
     end
 

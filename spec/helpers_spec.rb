@@ -125,6 +125,14 @@ describe GraphitiSpecHelpers do
         expect(d.jsonapi_type).to eq('employees')
         expect(d.first_name).to eq('John')
       end
+
+      context 'when trying to access missing attribute' do
+        it 'raises helpful error' do
+          expect {
+            jsonapi_data.foo
+          }.to raise_error(GraphitiSpecHelpers::Errors::NoAttribute, "No attribute 'foo' in JSON response node!")
+        end
+      end
     end
 
     context 'when data is an array' do
