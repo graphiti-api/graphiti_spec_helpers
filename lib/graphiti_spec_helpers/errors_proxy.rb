@@ -60,7 +60,7 @@ module GraphitiSpecHelpers
     end
 
     def method_missing(id, *args, &blk)
-      if error = @errors.find { |e| e.attribute == id }
+      if error = @errors.find { |e| e.attribute.to_sym == id }
         return error
       else
         super
