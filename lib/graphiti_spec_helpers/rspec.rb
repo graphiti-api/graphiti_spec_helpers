@@ -4,6 +4,16 @@ require 'graphiti_spec_helpers'
   let(:resource)     { described_class }
   let(:params)       { {} }
 
+  around do |e|
+    begin
+      original = Graphiti::Resource.validate_endpoints
+      Graphiti::Resource.validate_endpoints = false
+      e.run
+    ensure
+      Graphiti::Resource.validate_endpoints = original
+    end
+  end
+
   # If you need to set context:
   #
   # Graphiti.with_context my_context, {} do
@@ -17,8 +27,9 @@ require 'graphiti_spec_helpers'
 
   def proxy
     @proxy ||= begin
-      ctx = ::GraphitiSpecHelpers::TestRunner.new(resource, params)
-      defined?(base_scope) ? ctx.proxy(base_scope) : ctx.proxy
+      args = [params]
+      args << base_scope if defined?(base_scope)
+      resource.all(*args)
     end
   end
 
