@@ -1,3 +1,3 @@
 module GraphitiSpecHelpers
-  VERSION = "1.0.alpha.8"
+  VERSION = "1.0.beta.1"
 end
