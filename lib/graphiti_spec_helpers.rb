@@ -33,5 +33,9 @@ module GraphitiSpecHelpers
     def errors
       jsonapi_errors
     end
+
+    def dt(*args)
+      datetime(*args)
+    end
   end
 end
