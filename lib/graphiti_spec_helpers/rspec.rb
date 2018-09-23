@@ -8,10 +8,19 @@ require 'graphiti_spec_helpers'
     begin
       original = Graphiti::Resource.validate_endpoints
       Graphiti::Resource.validate_endpoints = false
-      e.run
+
+      Graphiti.with_context graphiti_context do
+        e.run
+      end
     ensure
       Graphiti::Resource.validate_endpoints = original
     end
+  end
+
+  def graphiti_context
+    ctx = OpenStruct.new
+    ctx.current_user = current_user if respond_to?(:current_user)
+    ctx
   end
 
   # If you need to set context:

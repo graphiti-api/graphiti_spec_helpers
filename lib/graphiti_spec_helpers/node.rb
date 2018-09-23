@@ -4,7 +4,7 @@ module GraphitiSpecHelpers
 
     def initialize(attributes, relationships, context)
       @attributes = attributes.with_indifferent_access
-      @relationships = relationships
+      @relationships = relationships.with_indifferent_access if relationships
       @context = context
     end
 
@@ -72,8 +72,8 @@ module GraphitiSpecHelpers
     private
 
     def include_for(type, id)
-      data = @context.json[:included].find do |i|
-        i[:type] == type && i[:id] == id
+      data = @context.json['included'].find do |i|
+        i['type'] == type && i['id'] == id
       end
       @context.node(from: data)
     end
