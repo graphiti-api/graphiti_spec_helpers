@@ -18,9 +18,12 @@ require 'graphiti_spec_helpers'
   end
 
   def graphiti_context
-    ctx = OpenStruct.new
-    ctx.current_user = current_user if respond_to?(:current_user)
-    ctx
+    @graphiti_context ||= begin
+      ctx = OpenStruct.new
+      ctx.current_user = current_user if respond_to?(:current_user)
+      ctx.params = params
+      ctx
+    end
   end
 
   # If you need to set context:
