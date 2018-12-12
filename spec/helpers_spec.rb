@@ -217,4 +217,28 @@ describe GraphitiSpecHelpers do
       })
     end
   end
+
+  describe '#jsonapi_meta' do
+    context 'when data is present' do
+      before do
+        json[:meta] = { foo: 'bar' }
+      end
+
+      it 'returns the hash' do
+        expect(jsonapi_meta).to eq({"foo" => "bar"})
+      end
+    end
+
+    context 'when no meta' do
+      before do
+        json.delete('meta')
+      end
+
+      it 'raises helpful error' do
+        expect {
+          jsonapi_meta
+        }.to raise_error(GraphitiSpecHelpers::Errors::NoMeta)
+      end
+    end
+  end
 end

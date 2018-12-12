@@ -57,5 +57,15 @@ module GraphitiSpecHelpers
         "Tried to find sideload, but the payload did not contain 'included'! Payload was:\n\n#{JSON.pretty_generate(@payload)}"
       end
     end
+
+    class NoMeta < Base
+      def initialize(payload)
+        @payload = payload
+      end
+
+      def message
+        "Tried to find metadata, but the payload did not contain 'meta'! Payload was:\n\n#{JSON.pretty_generate(@payload)}"
+      end
+    end
   end
 end
