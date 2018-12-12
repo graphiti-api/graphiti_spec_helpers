@@ -37,6 +37,10 @@ module GraphitiSpecHelpers
       @jsonapi_errors ||= ErrorsProxy.new(json['errors'] || [])
     end
 
+    def jsonapi_meta
+      @jsonapi_errors = json['meta'] || raise(Errors::NoMeta.new(json))
+    end
+
     def jsonapi_headers
       {
         'CONTENT_TYPE' => 'application/vnd.api+json'
