@@ -70,6 +70,12 @@ describe GraphitiSpecHelpers do
     end
   end
 
+  describe '#flatten' do
+    it 'works' do
+      expect(jsonapi_data.flatten.map(&:id)).to eq([100])
+    end
+  end
+
   describe '#sideloads/sideload' do
     context 'when relation is an array' do
       it 'returns relevant node' do

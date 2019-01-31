@@ -44,6 +44,10 @@ module GraphitiSpecHelpers
       end
     end
 
+    def respond_to?(*args)
+      super
+    end
+
     def link(relationship_name, name)
       if @relationships.has_key?(relationship_name)
         links = @relationships[relationship_name][:links]
