@@ -67,8 +67,12 @@ module GraphitiSpecHelpers
       delete url, headers: jsonapi_headers
     end
 
-    def datetime(value)
-      Graphiti::Types[:datetime][:read][value]
+    def json_datetime(value)
+      Graphiti::Types[:datetime][:read][value].as_json
+    end
+
+    def json_date(value)
+      Graphiti::Types[:date][:read][value].as_json
     end
 
     # @api private

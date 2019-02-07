@@ -35,7 +35,15 @@ module GraphitiSpecHelpers
     end
 
     def dt(*args)
-      datetime(*args)
+      json_datetime(*args)
+    end
+
+    def datetime(*args)
+      json_datetime(*args)
+    end
+
+    def date(*args)
+      json_date(*args)
     end
   end
 end
