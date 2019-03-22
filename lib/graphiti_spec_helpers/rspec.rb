@@ -54,6 +54,22 @@ require 'graphiti_spec_helpers'
   end
 end
 
+RSpec.shared_context 'remote api' do
+  # Fake request headers
+  around do |e|
+    ctx = OpenStruct.new \
+      request: OpenStruct.new(headers: OpenStruct.new)
+    Graphiti.with_context(ctx) { e.run }
+  end
+
+  def mock_api(url, json)
+    api_response = double(body: json.to_json)
+    expect(Faraday).to receive(:get)
+      .with(url, anything, anything)
+      .and_return(api_response)
+  end
+end
+
 module GraphitiSpecHelpers
   module RSpec
     def self.included(klass)
