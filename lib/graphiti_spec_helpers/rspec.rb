@@ -62,10 +62,11 @@ RSpec.shared_context 'remote api' do
     Graphiti.with_context(ctx) { e.run }
   end
 
-  def mock_api(url, json)
+  def mock_api(url, json, call_count = 1)
     api_response = double(body: json.to_json)
     expect(Faraday).to receive(:get)
       .with(url, anything, anything)
+      .exactly(call_count).times
       .and_return(api_response)
   end
 end
