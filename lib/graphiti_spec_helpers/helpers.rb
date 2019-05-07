@@ -42,8 +42,10 @@ module GraphitiSpecHelpers
     end
 
     def jsonapi_headers
+      media_type = 'application/vnd.api+json'
       {
-        'CONTENT_TYPE' => 'application/vnd.api+json'
+        'CONTENT_TYPE' => media_type,
+        'HTTP_ACCEPT' => media_type
       }
     end
 
