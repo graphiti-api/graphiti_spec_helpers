@@ -65,7 +65,7 @@ module GraphitiSpecHelpers
       patch url, params: payload.to_json, headers: jsonapi_headers.merge(headers)
     end
 
-    def jsonapi_delete(url, headers)
+    def jsonapi_delete(url, headers: {})
       delete url, headers: jsonapi_headers.merge(headers)
     end
 
