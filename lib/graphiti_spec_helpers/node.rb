@@ -9,7 +9,11 @@ module GraphitiSpecHelpers
     end
 
     def id
-      rawid.to_i
+      begin
+        Integer(rawid) # Only convert if using integer ids
+      rescue ArgumentError
+        rawid
+      end
     end
 
     def rawid
