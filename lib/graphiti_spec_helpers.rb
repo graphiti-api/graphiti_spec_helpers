@@ -9,6 +9,7 @@ require 'graphiti_spec_helpers/helpers'
 require 'graphiti_spec_helpers/node'
 require 'graphiti_spec_helpers/errors_proxy'
 require 'graphiti_spec_helpers/errors'
+require 'graphiti_spec_helpers/matchers'
 
 module GraphitiSpecHelpers
   def self.included(klass)
