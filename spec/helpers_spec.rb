@@ -26,7 +26,25 @@ describe GraphitiSpecHelpers do
               }
             }
           }
-        }
+        },
+        {
+          type: 'employees',
+          id: '101',
+          attributes: { first_name: 'Lucy' },
+          relationships: {
+            manager: {
+              data: [
+                {
+                  type: 'employees',
+                  id: '100'
+                }
+              ],
+              links: {
+                related: 'http://example.com/employees/100'
+              }
+            }
+          }
+        },
       ],
       included: [
         {
@@ -72,7 +90,7 @@ describe GraphitiSpecHelpers do
 
   describe '#flatten' do
     it 'works' do
-      expect(jsonapi_data.flatten.map(&:id)).to eq([100])
+      expect(jsonapi_data.flatten.map(&:id)).to eq([100, 101])
     end
   end
 
@@ -99,6 +117,17 @@ describe GraphitiSpecHelpers do
       end
     end
 
+    context 'when sideloaded data is not part of included' do
+      it 'returns relevant node' do
+        sl = jsonapi_data[1].sideload(:manager)
+        expect(sl.map(&:attributes)).to eq([{
+          'id'           => '100',
+          'jsonapi_type' => 'employees',
+          'first_name'        => 'John'
+        }])
+      end
+    end
+
     context 'when not found' do
       it 'raises helpful error' do
         expect {
@@ -115,7 +144,7 @@ describe GraphitiSpecHelpers do
       it 'returns nil' do
         expect(jsonapi_included[0].sideload(:department)).to be_nil
       end
-    end
+    end    
   end
 
   describe '#jsonapi_data' do
@@ -145,7 +174,7 @@ describe GraphitiSpecHelpers do
       it 'returns an array of nodes' do
         d = jsonapi_data
         expect(d.is_a?(Array)).to eq(true)
-        expect(d.length).to eq(1)
+        expect(d.length).to eq(2)
         expect(d[0].is_a?(GraphitiSpecHelpers::Node)).to eq(true)
         expect(d[0].id).to eq(100)
         expect(d[0].jsonapi_type).to eq('employees')

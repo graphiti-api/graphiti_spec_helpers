@@ -80,10 +80,9 @@ module GraphitiSpecHelpers
     private
 
     def include_for(type, id)
-      data = @context.json['included'].find do |i|
-        i['type'] == type && i['id'] == id
-      end
-      @context.node(from: data)
+      data = [@context.json['included'], @context.json['data']].compact.flatten
+      sideload = data.find { |i| i['type'] == type && i['id'] == id }
+      @context.node(from: sideload)
     end
   end
 end
