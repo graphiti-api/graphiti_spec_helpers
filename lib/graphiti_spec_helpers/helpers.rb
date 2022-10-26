@@ -27,7 +27,7 @@ module GraphitiSpecHelpers
 
       nodes =  _jsonapi_included.map { |i| node(from: i) }
       if type
-        nodes.select! { |n| n.jsonapi_type == type }
+        nodes.select! { |n| n.jsonapi_type == type.to_s }
       end
       instance_variable_set(variable, nodes)
       nodes
