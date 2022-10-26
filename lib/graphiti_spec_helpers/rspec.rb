@@ -1,3 +1,4 @@
+require 'rspec/core'
 require 'graphiti_spec_helpers'
 
 ::RSpec.shared_context 'resource testing', type: :resource do |parameter|
