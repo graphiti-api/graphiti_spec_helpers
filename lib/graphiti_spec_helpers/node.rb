@@ -39,6 +39,7 @@ module GraphitiSpecHelpers
     def attributes
       @attributes
     end
+    alias :to_hash :attributes
 
     def method_missing(id, *args, &blk)
       if @attributes.has_key?(id)

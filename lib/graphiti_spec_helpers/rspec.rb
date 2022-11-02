@@ -54,7 +54,7 @@ require 'graphiti_spec_helpers'
   end
 end
 
-RSpec.shared_context 'remote api' do
+::RSpec.shared_context 'remote api' do
   # Fake request headers
   around do |e|
     ctx = OpenStruct.new \
