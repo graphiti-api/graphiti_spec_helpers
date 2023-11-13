@@ -27,6 +27,7 @@ module GraphitiSpecHelpers
     def has_key?(key)
       @attributes.has_key?(key)
     end
+    alias :key? :has_key?
 
     def [](key)
       @attributes[key] || @attributes[key.to_s]
