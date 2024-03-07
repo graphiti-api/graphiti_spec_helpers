@@ -1,8 +1,34 @@
 require 'graphiti_spec_helpers'
 
-::RSpec.shared_context 'resource testing', type: :resource do |parameter|
-  let(:resource)     { described_class }
-  let(:params)       { {} }
+class GraphitiContextProxy < OpenStruct
+  def initialize(proxied, *args)
+    @__proxied = proxied
+    super(*args)
+  end
+
+  # variables defined in the rspec context should remain lazy
+  def current_user
+    super || __proxied_current_user
+  end
+
+  def params
+    super || __proxied_params
+  end
+
+  private
+
+  def __proxied_current_user
+    @__proxied.current_user if @__proxied.respond_to?(:current_user)
+  end
+
+  def __proxied_params
+    @__proxied.params if @__proxied.respond_to?(:params)
+  end
+end
+
+::RSpec.shared_context "resource testing", type: :resource do |parameter|
+  let(:resource) { described_class }
+  let(:params) { {} }
 
   around do |e|
     begin
@@ -18,12 +44,7 @@ require 'graphiti_spec_helpers'
   end
 
   def graphiti_context
-    @graphiti_context ||= begin
-      ctx = OpenStruct.new
-      ctx.current_user = current_user if respond_to?(:current_user)
-      ctx.params = params
-      ctx
-    end
+    @graphiti_context ||= GraphitiContextProxy.new(self)
   end
 
   # If you need to set context:
