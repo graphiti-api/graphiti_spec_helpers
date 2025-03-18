@@ -100,6 +100,7 @@ module GraphitiSpecHelpers
 
       ::RSpec.configure do |rspec|
         rspec.include_context "resource testing", type: :resource
+        rspec.include GraphitiSpecHelpers::Matchers, type: :resource
       end
     end
 
