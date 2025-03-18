@@ -50,23 +50,23 @@ module GraphitiSpecHelpers
     end
 
     def jsonapi_get(url, params: {}, headers: {})
-      get url, params: params, headers: jsonapi_headers.merge(headers)
+      get url_for(url), params: params, headers: jsonapi_headers.merge(headers)
     end
 
     def jsonapi_post(url, payload, headers: {})
-      post url, params: payload.to_json, headers: jsonapi_headers.merge(headers)
+      post url_for(url), params: payload.to_json, headers: jsonapi_headers.merge(headers)
     end
 
     def jsonapi_put(url, payload, headers: {})
-      put url, params: payload.to_json, headers: jsonapi_headers.merge(headers)
+      put url_for(url), params: payload.to_json, headers: jsonapi_headers.merge(headers)
     end
 
     def jsonapi_patch(url, payload, headers: {})
-      patch url, params: payload.to_json, headers: jsonapi_headers.merge(headers)
+      patch url_for(url), params: payload.to_json, headers: jsonapi_headers.merge(headers)
     end
 
     def jsonapi_delete(url, headers: {})
-      delete url, headers: jsonapi_headers.merge(headers)
+      delete url_for(url), headers: jsonapi_headers.merge(headers)
     end
 
     def json_datetime(value)
