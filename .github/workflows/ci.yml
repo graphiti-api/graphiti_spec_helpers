@@ -17,3 +17,14 @@ jobs:
           bundler-cache: true
           ruby-version: ${{ matrix.ruby }}
       - run: bundle exec rake
+  publish:
+    name: Release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    needs: [test]
+    steps:
+      - name: Dispatch Release
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Generate New Release
+          token: ${{ secrets.GITHUB_TOKEN }}
