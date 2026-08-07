@@ -1,5 +1,12 @@
 # GraphitiSpecHelpers
 
+> ### This gem is retired
+>
+> `graphiti_spec_helpers` is part of [graphiti](https://github.com/graphiti-api/graphiti) itself as of graphiti 2.0, and is no longer developed here. Issues and pull requests live in the [graphiti repo](https://github.com/graphiti-api/graphiti/issues).
+>
+> To upgrade from Graphiti 1.x to 2.x, follow the [upgrade guide](https://graphiti.dev/upgrading).
+
+
 ![Build Status](https://travis-ci.org/graphiti-api/graphiti_spec_helpers.svg?branch=master)
 [![Gem Version](https://badge.fury.io/rb/graphiti_spec_helpers.svg)](https://badge.fury.io/rb/graphiti_spec_helpers)
 
