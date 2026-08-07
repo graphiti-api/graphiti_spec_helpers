@@ -1,5 +1,12 @@
 graphiti changelog
 
+## [1.2.1](https://github.com/graphiti-api/graphiti_spec_helpers/compare/v1.2.0...v1.2.1) (2026-08-07)
+
+
+### Bug Fixes
+
+* cap the graphiti dependency below 2.0 ([99db596](https://github.com/graphiti-api/graphiti_spec_helpers/commit/99db5964c1eb6fef583922c03df5ab951a7c1eb4))
+
 # [1.2.0](https://github.com/graphiti-api/graphiti_spec_helpers/compare/v1.1.0...v1.2.0) (2025-03-18)
 
 
