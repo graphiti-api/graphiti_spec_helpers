@@ -9,24 +9,16 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Lee Richmond"]
   spec.email         = ["lrichmond1@bloomberg.net"]
 
-  spec.summary       = %q{Spec helpers for Graphiti and JSONAPI}
+  spec.summary       = %q{Deprecated - part of graphiti itself as of graphiti 2.0}
   spec.description   = %q{Easily test JSONAPIs and Graphiti Resources}
   spec.license       = "MIT"
-
-  spec.post_install_message = <<~MESSAGE
-    graphiti_spec_helpers is part of graphiti as of 2.0 and is no longer released separately.
-
-    Remove it from your Gemfile. The "graphiti_spec_helpers/rspec" require and the GraphitiSpecHelpers namespace are unchanged.
-
-    https://graphiti.dev/upgrading
-  MESSAGE
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "graphiti", '>= 1.0.alpha.1', '< 2'
+  spec.add_dependency "graphiti", '>= 1.0.alpha.1', '< 2.a'
   spec.add_dependency "rspec", "~> 3.0"
 
   spec.add_development_dependency "pry"
