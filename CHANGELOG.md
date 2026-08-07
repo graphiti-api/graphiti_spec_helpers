@@ -1,5 +1,12 @@
 graphiti changelog
 
+## [1.2.2](https://github.com/graphiti-api/graphiti_spec_helpers/compare/v1.2.1...v1.2.2) (2026-08-07)
+
+
+### Bug Fixes
+
+* also exclude the graphiti 2.0 prereleases ([f12a6b3](https://github.com/graphiti-api/graphiti_spec_helpers/commit/f12a6b3c94fa5b0da3cc6aa4c6ae9af92866c42d))
+
 ## [1.2.1](https://github.com/graphiti-api/graphiti_spec_helpers/compare/v1.2.0...v1.2.1) (2026-08-07)
 
 
